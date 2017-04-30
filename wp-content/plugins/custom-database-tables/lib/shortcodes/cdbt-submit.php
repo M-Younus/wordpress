@@ -37,13 +37,16 @@ trait CdbtSubmit {
 		return __('Specified table is not exist', CDBT_PLUGIN_SLUG);
 	if (empty($query)) 
 		return __('Specifying query is nothing', CDBT_PLUGIN_SLUG);
-	if (preg_match('/^(insert|update)\s(.*)$/iU', $query, $matches)) {
-		$query_action = strtolower($matches[1]);
-		if ($query_action == 'insert' && !cdbt_check_current_table_role('input', $table)) 
-			$err_permission = sprintf(__('You do not have a permission to %s this table', CDBT_PLUGIN_SLUG), __('input', CDBT_PLUGIN_SLUG));
-		if ($query_action == 'update' && !cdbt_check_current_table_role('edit', $table)) 
-			$err_permission = sprintf(__('You do not have a permission to %s this table', CDBT_PLUGIN_SLUG), __('edit', CDBT_PLUGIN_SLUG));
-	} else {
+
+	// if (preg_match('/^(insert|update)\s(.*)$/iU', $query, $matches)) {
+	// 	$query_action = strtolower($matches[1]);
+	// 	if ($query_action == 'insert' && !cdbt_check_current_table_role('input', $table)) 
+	// 		$err_permission = sprintf(__('You do not have a permission to %s this table', CDBT_PLUGIN_SLUG), __('input', CDBT_PLUGIN_SLUG));
+	// 	if ($query_action == 'update' && !cdbt_check_current_table_role('edit', $table)) 
+	// 		$err_permission = sprintf(__('You do not have a permission to %s this table', CDBT_PLUGIN_SLUG), __('edit', CDBT_PLUGIN_SLUG));
+	// }
+	
+	 else {
 		return __('Can not use your specified query', CDBT_PLUGIN_SLUG);
 	}
 	if (!isset($query_action)) 

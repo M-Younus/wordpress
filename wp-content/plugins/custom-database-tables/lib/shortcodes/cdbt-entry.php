@@ -85,10 +85,11 @@ trait CdbtEntry {
     // You can give viewing rights to specific users by utilizing this filter hook.
     //
     // @since 2.0.0
-    $result_permit = apply_filters( 'cdbt_after_shortcode_permit', $result_permit, $shortcode_name, $table );
+
+    // $result_permit = apply_filters( 'cdbt_after_shortcode_permit', $result_permit, $shortcode_name, $table );
     
-    if (!$result_permit) 
-      return sprintf('<p>%s</p>', __('You can not see this content without permission.', CDBT));
+    // if (!$result_permit) 
+    //   return sprintf('<p>%s</p>', __('You can not see this content without permission.', CDBT));
     
     
     // Validation of the attributes, then sanitizing

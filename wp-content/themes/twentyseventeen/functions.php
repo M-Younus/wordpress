@@ -569,11 +569,11 @@ require get_parent_theme_file_path( '/inc/icon-functions.php' );
 //custom code add form and save in db
 
 
-function elh_insert_into_db() {
+function donation_insert_into_db() {
  
     global $wpdb;
     // creates my_table in database if not exists
-    $table = $wpdb->prefix . "my_table"; 
+    $table = $wpdb->prefix . "my_donation_table"; 
     $charset_collate = $wpdb->get_charset_collate();
     $sql = "CREATE TABLE IF NOT EXISTS $table (
         `id` mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -585,16 +585,16 @@ function elh_insert_into_db() {
     // starts output buffering
     ob_start();
     ?>
-    <form action="#v_form" method="post" id="v_form">
+    <form action="../test1" method="post" id="v_form">
         <label for="visitor_name"><h3>Hello there! What is your name?</h3></label>
-        <input type="text" name="visitor_name" id="visitor_name" />
+        <input type="text" required name="visitor_name" id="visitor_name" />
         <input type="submit" name="submit_form" value="submit" />
     </form>
     <?php
     $html = ob_get_clean();
     // does the inserting, in case the form is filled and submitted
     if ( isset( $_POST["submit_form"] ) && $_POST["visitor_name"] != "" ) {
-        $table = $wpdb->prefix."my_table";
+        $table = $wpdb->prefix."my_donation_table";
         $name = strip_tags($_POST["visitor_name"], "");
         $wpdb->insert( 
             $table, 
@@ -612,4 +612,4 @@ function elh_insert_into_db() {
      
 }
 // adds a shortcode you can use: [insert-into-db]
-add_shortcode('elh-db-insert', 'elh_insert_into_db');
+add_shortcode('donation-db-insert', 'donation_insert_into_db');
