@@ -587,7 +587,7 @@ function donation_insert_into_db() {
     // starts output buffering
     ob_start();
     ?>
-    <form method="post" id="donate_form" action="../test1">
+    <form method="post" id="donate_form" action="#donate_form">
 					<h3>Your Details</h3>
 					<p>
 						<label>Title 
@@ -1001,9 +1001,14 @@ function donation_insert_into_db() {
 				'message' => $message
             )
         );
-		$wpdb->print_error();
+		
 		echo '<script>console.log("'.$wpdb->print_error().'");</script>';
-        $html = "<p> successfully recorded. Thanks!!</p>";
+        $html = '<p> successfully recorded. Thanks!!</p>
+				<form action="../test1" method="post">
+					<input type="submit" value="Proceed">
+				</form>
+		';
+		
     }
 	
     // if the form is submitted but the name is empty
@@ -1011,7 +1016,7 @@ function donation_insert_into_db() {
     //     $html .= "<p>You need to fill the required fields.</p>";
     // outputs everything
     return $html;
-     
+	
 }
 // adds a shortcode you can use: [insert-into-db]
 add_shortcode('donation-db-insert', 'donation_insert_into_db');
